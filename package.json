@@ -1,0 +1,21 @@
+{
+  "name": "yapin-test-bot",
+  "version": "1.0.0",
+  "description": "A Yapin' bot that exercises every part of yapin.js: commands, buttons, Components V2, embeds, collectors, modules, managers, REST and utilities.",
+  "type": "module",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "node bot.js --watch-modules",
+    "selftest": "node selftest/run.js",
+    "simulate": "node sim/simulate.js",
+    "test": "node selftest/run.js && node sim/simulate.js"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "yapin.js": "^0.1.0-beta.1"
+  }
+}

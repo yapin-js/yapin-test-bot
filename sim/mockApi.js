@@ -156,7 +156,7 @@ export class MockYapin {
 
     const request = { method, path, query, body, at: Date.now() };
     const index = this.requests.push(request) - 1;
-    const response = this.#route(method, path, query, body);
+    const response = this.#route(method, path, query, body, request);
     queueMicrotask(() => { for (const w of [...this.waiters]) w.check(request, index); });
     return response;
   };
@@ -192,7 +192,7 @@ export class MockYapin {
     return this.messages.get(channelId)?.find((m) => m.id === messageId) ?? null;
   }
 
-  #route(method, path, query, body) {
+  #route(method, path, query, body, request) {
     const { ids } = this;
     const m = (pattern) => {
       const match = new RegExp(`^${pattern.replace(/:\w+/g, '([^/]+)')}$`).exec(path);
@@ -245,6 +245,7 @@ export class MockYapin {
         reply_to_id: body.reply_to ?? null, created_at: now(), edited_at: null,
       };
       this.messages.get(p[0]).push(message);
+      request.result = message;
       return json(200, { message });
     }
     if ((p = m('/channels/:id/messages')) && method === 'GET') {

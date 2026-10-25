@@ -137,7 +137,7 @@ export default class Inspect extends Module {
     },
     {
       name: 'longtext',
-      description: 'splitMessage: sends ~2800 characters in 2000-character parts',
+      description: 'splitMessage: sends ~2400 characters in 2000-character parts',
       run: async (ctx) => {
         const text = Array.from({ length: 80 }, (_, i) => `Line ${i + 1}: the quick brown fox.`).join('\n');
         const parts = splitMessage(text);

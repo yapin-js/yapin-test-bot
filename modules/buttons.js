@@ -77,7 +77,7 @@ export default class Buttons extends Module {
     'btn:defer': async (i) => {
       await i.deferUpdate();
       await sleep(1000);
-      await i.followUp({ content: `Deferred, then followed up a second later (answers so far: ${i.responses}).`, ephemeral: true });
+      await i.followUp({ content: `Deferred, then followed up a second later (answers before this one: ${i.responses}).`, ephemeral: true });
     },
     'btn:slow': async (i) => {
       // Answer later than the auto-ack window, so yapin.js acknowledges the click for us first.

@@ -58,7 +58,6 @@ export default class Buttons extends Module {
     {
       name: 'onceclick',
       description: 'A button handled by components.once(): only the first click counts',
-      // An arrow function, so `this` is the module (yapin.js calls run with `this` = the definition).
       run: async (ctx) => {
         const id = `once:${ctx.message.id}`;
         const remove = ctx.client.components.once(id, (i) => i.update({ content: `🏁 ${i.user} got there first.`, components: null }));
